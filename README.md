@@ -51,3 +51,11 @@ Run:
 * Update an existing instructions
 
   curl -i -X PUT -H "Content-Type: application/json" -d "{ \"event_status\": \"83\", \"event_name\": \"100\" }" http://localhost:8080/api/v1/instructions/1
+
+### Run App with Docker
+
+**Make sure Docker is installed before executing the command below**
+
+  docker build -t instructions-app . # inside the app directory
+
+
