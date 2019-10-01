@@ -5,14 +5,16 @@ import (
   _ "github.com/go-sql-driver/mysql"
   "gopkg.in/gorp.v1"
   "log"
+  "os"
 )
 
 func initDb() *gorp.DbMap {
-  db, err := sql.Open("mysql", "root:password@/instructions")
+  connection_string := os.Getenv("MYSQL_USER") + ":" + os.Getenv("MYSQL_PASSWORD") + "@/" + os.Getenv("MYSQL_DATABASE")
+  db, err := sql.Open("mysql", connection_string)
   checkErr(err, "sql.Open failed")
 
   dbmap := &gorp.DbMap{Db: db, Dialect: gorp.MySQLDialect{"InnoDB", "UTF8"}}
-  dbmap.AddTableWithName(Instruction{}, "Instruction").SetKeys(true, "Id")
+  dbmap.AddTableWithName(Instruction{}, "instruction").SetKeys(true, "Id")
 
   err = dbmap.CreateTablesIfNotExists()
   checkErr(err, "Create table failed")
