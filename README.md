@@ -102,5 +102,17 @@ curl \
 
 **Make sure Docker is installed before executing the command below**
 
-  docker build -t instructions-app . # inside the app directory
+```
+docker build -t instructions-app . # inside the app directory
+```
 
+### Cleanup
+
+1. Press CTRL-C to stop the application.
+
+2. Stop MySQL Server if you started it using Docker.
+
+```
+docker stop ${MYSQL_CONTAINER_NAME}
+docker rm ${MYSQL_CONTAINER_NAME}
+```
